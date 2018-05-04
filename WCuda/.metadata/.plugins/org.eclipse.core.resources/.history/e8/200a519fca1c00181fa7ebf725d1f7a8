@@ -1,0 +1,100 @@
+#pragma once
+
+#include <math.h>
+#include "MathTools.h"
+
+#include "ColorTools_GPU.h"
+
+using namespace gpu;
+
+/*----------------------------------------------------------------------*\
+ |*			Declaration 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+class MandelbrotMath
+    {
+	/*--------------------------------------*\
+	|*		Constructeur		*|
+	 \*-------------------------------------*/
+
+    public:
+	__device__
+	MandelbrotMath(uint w, uint h)
+	    {
+	    this->dim2 = w / 2.f;
+	    }
+
+	// constructeur copie: pas besoin car pas attribut ptr
+	__device__
+	virtual ~MandelbrotMath(void)
+	    {
+	    // rien
+	    }
+
+	/*--------------------------------------*\
+	|*		Methode			*|
+	\*-------------------------------------*/
+
+    public:
+	__device__
+	void colorIJ(uchar4* ptrColor, int i, int j, float t)
+	    {
+	    float k = f(i, j);
+	    float hue = k;
+	    if(hue<n)
+		{
+		calibreur.calibrer(&hue);
+		//ColorTools::HSB_TO_RVB(hue, ptrColor); // update color
+		ptrColor->x = 0;
+		ptrColor->y = 0;
+		ptrColor->z = 0;
+		}
+	    else
+		{
+		ptrColor->x = 0;
+		ptrColor->y = 0;
+		ptrColor->z = 0;
+		}
+
+	    ptrColor->w = 255; // opaque
+	    }
+
+    private:
+	__device__
+	void f(int i, int j, float t, uchar* ptrlevelGris)
+	    {
+	    float result;
+	    dij(i,j,&result);
+
+	    result=result/10.f;
+	    float top = cosf(result - (t/7.f));
+	    float bottom = result + 1.f;
+	    *ptrlevelGris = 128.f+127.f*(top/bottom);
+	    }
+
+	__device__
+	void dij(int i, int j, float* ptrResult)
+	    {
+		float fi = i-dim2;
+		float fj = j-dim2;
+		*ptrResult = sqrtf(fi*fi + fj*fj);
+	    }
+
+	/*--------------------------------------*\
+	|*		Attribut		*|
+	\*--------------------------------------*/
+
+    private:
+
+	// Tools
+	float dim2;
+
+    };
+
+/*----------------------------------------------------------------------*\
+ |*			End	 					*|
+ \*---------------------------------------------------------------------*/

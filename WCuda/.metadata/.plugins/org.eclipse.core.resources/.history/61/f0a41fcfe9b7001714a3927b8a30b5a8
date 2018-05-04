@@ -1,0 +1,207 @@
+
+package ch.arc.cours.lamda.c_stream;
+
+import java.util.Arrays;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import ch.arc.cours.lamda.c_stream.tools.Personne;
+import ch.arc.cours.lamda.c_stream.tools.PersonneTools;
+
+public class UseStream_02_Collect
+	{
+	/*------------------------------------------------------------------*\
+	|*							Methodes Public							*|
+	\*------------------------------------------------------------------*/
+
+	public static void main(String[] args)
+		{
+		main();
+		}
+
+	public static void main()
+		{
+		int n = 5;
+
+		System.out.println("stream : collect");
+
+		// to Collection
+			{
+			useCollectToList1(n);
+			useCollectToList2(n);
+			useCollectToSet(n);
+			}
+
+		// reduce & stat
+			{
+			useCollectToReduce(n);
+			useCollectToStat(n);
+			}
+
+		// Grouping
+			{
+			// difficult see later
+			}
+
+		useCollectToList3();
+		}
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Private						*|
+	\*------------------------------------------------------------------*/
+
+	/*------------------------------*\
+	|*		toColection				*|
+	\*------------------------------*/
+
+	/**
+	 * Quoi : 	 	filter				collect
+	 * Comment :	Predicate<T>		Collectors
+	 *
+	 * Probleme :	list personne dont age > 50
+	 */
+	private static void useCollectToList1(int n)
+		{
+		List<Personne> list = PersonneTools.create(n);
+
+		System.out.println("originale : " + list);
+
+		// lamda dans variable
+			{
+			Predicate<Personne> ageBigger50 = personne -> personne.getAge() > 50;
+			List<Personne> listFilter = list.stream().filter(ageBigger50).collect(Collectors.toList());
+			// filter  : non terminal , stream-in -> stream-out
+			// collect : terminal , interdit use stream after
+
+			System.out.println("age > 50 : " + listFilter);
+			}
+		}
+
+	/**
+	 * Quoi : 	 	filter				map					collect
+	 * Comment :	Predicate<T>		Function<T1,T2>		Collectors
+	 *
+	 * Probleme :	list hauteur personne dont age > 50
+	 */
+	private static void useCollectToList2(int n)
+		{
+		List<Personne> list = PersonneTools.create(n);
+
+		// lamda, reference methode si possible
+			{
+			// TODO
+			Predicate<Personne> ageBigger50 = personne -> personne.getAge() > 50;
+			List<Integer> listHauteur = list.stream().filter(ageBigger50).map(Personne::getHauteur).collect(Collectors.toList());
+			// filter  : non terminal , stream-in -> stream-out
+			// map     : non terminal , stream-in -> stream-out
+			// collect : terminal , interdit use stream after
+
+			System.out.println("hauteur avec age > 50 : " + listHauteur);
+			}
+		}
+
+	/**
+	 * Quoi : 	 	filter				map					collect
+	 * Comment :	Predicate<T>		Function<T1,T2>		Collectors
+	 *
+	 * Probleme :	set hauteur personne dont age > 50
+	 */
+	private static void useCollectToSet(int n)
+		{
+		List<Personne> list = PersonneTools.create(n);
+
+		// lamda, reference methode si possible
+			{
+
+			Predicate<Personne> ageBigger50 = personne -> personne.getAge() > 50;
+			Set<Integer> setHauteur = list.stream().filter(ageBigger50).map(Personne::getAge).collect(Collectors.toSet());
+			// filter  : non terminal , stream-in -> stream-out
+			// map     : non terminal , stream-in -> stream-out
+			// collect : terminal , interdit use stream after
+
+			System.out.println("hauteur avec age > 50 : " + setHauteur);
+			}
+		}
+
+	/**
+	 * Quoi : 	 	tri				collect
+	 * Comment :	sorted			Collectors
+	 *
+	 * Probleme :	tri
+	 */
+	private static void useCollectToList3()
+		{
+		Integer[] tab = { 9, 5, 7, 2, 4, 3, 1, 6, 8 };
+
+		// tri naturel
+			{
+
+			List<Integer> listSorted = Arrays.stream(tab).sorted().collect(Collectors.toList());
+
+			System.out.println("tri croissant : " + listSorted);
+			}
+
+		// tri decroissant, lamda for comparator (indication multiply by -1)
+			{
+			// TODO
+			List<Integer> listSorted = null;
+
+			System.out.println("tri decroissant : " + listSorted);
+			}
+		}
+
+	/*------------------------------*\
+	|*		replace map/reduce		*|
+	\*------------------------------*/
+
+	/**
+	 * Quoi : 	 	map					collect
+	 * Comment :	Function<T1,T2>		Collectors.reducing
+	 *
+	 * Probleme :	somme des hauteurs
+	 */
+	private static void useCollectToReduce(int n)
+		{
+		List<Personne> list = PersonneTools.create(n);
+
+		// lamda, reference methode si possible
+			{
+			// TODO
+			Integer sumHauteur = null;
+			// map     : non terminal , stream-in -> stream-out
+			// collect : terminal , interdit use stream after
+
+			System.out.println("sumHauteur : " + sumHauteur);
+			}
+		}
+
+	/**
+	 * Quoi : 	 	map					collect
+	 * Comment :	Function<T1,T2>		Collectors.summarizingInt
+	 *
+	 * Probleme :	statistique des ages
+	 */
+	private static void useCollectToStat(int n)
+		{
+		List<Personne> list = PersonneTools.create(n);
+
+		// lamda, reference methode si possible
+			{
+			// TODO
+			IntSummaryStatistics stat = null;
+			// collect : terminal , interdit use stream after
+
+			System.out.println("stat age : " + stat);
+			}
+		}
+
+	/*------------------------------*\
+	|*		grouping				*|
+	\*------------------------------*/
+
+	// Difficult, see later
+
+	}

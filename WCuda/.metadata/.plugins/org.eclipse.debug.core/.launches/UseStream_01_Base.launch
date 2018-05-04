@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/PLamda/src/ch/arc/cours/lamda/c_stream/UseStream_01_Base.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="ch.arc.cours.lamda.c_stream.UseStream_01_Base"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="PLamda"/>
+</launchConfiguration>

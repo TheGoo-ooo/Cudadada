@@ -1,0 +1,80 @@
+#pragma once
+
+#include "cudaTools.h"
+#include "MathTools.h"
+
+#include "Animable_I_GPU.h"
+
+#include "../../../04_RayTracing/moo/device/math/Sphere.h"
+using namespace gpu;
+
+/*----------------------------------------------------------------------*\
+ |*			Declaration 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+class Ray: public Animable_I<float4>
+    {
+	/*--------------------------------------*\
+	|*		Constructor		*|
+	 \*-------------------------------------*/
+
+    public:
+
+	Ray(
+		const Grid& grid,
+		int nbSphere,
+		uint w,
+		uint h,
+		float dt = 2 * PI / 1000);
+	virtual ~Ray(void);
+
+	/*--------------------------------------*\
+	 |*		Methodes		*|
+	 \*-------------------------------------*/
+
+    public:
+
+	/*-------------------------*\
+	|*   Override Animable_I   *|
+	 \*------------------------*/
+
+	/**
+	 * Call periodicly by the api
+	 */
+	virtual void process(
+		float4* ptrDevPixels,
+		uint w,
+		uint h,
+		const DomaineMath& domaineMath);
+
+	/**
+	 * Call periodicly by the api
+	 */
+	virtual void animationStep();
+	void fillCM(uint w, uint h);
+	void fillSM(uint w, uint h);
+	void fillGM(uint w, uint h);
+
+
+	/*--------------------------------------*\
+	 |*		Attributs		*|
+	 \*-------------------------------------*/
+
+    private:
+
+	// Inputs
+	const int MEMORY_TYPE = 2;
+	float dt;
+	int nbSphere;
+	Sphere* ptrDevTabSphere;
+	size_t sizeOctetSpheres;
+	size_t sizeOctetSM;
+    };
+
+/*----------------------------------------------------------------------*\
+ |*			End	 					*|
+ \*---------------------------------------------------------------------*/

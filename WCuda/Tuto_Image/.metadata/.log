@@ -1,0 +1,19 @@
+!SESSION 2017-12-11 13:15:23.139 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=1.8.0_151
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-12-11 13:16:50.050
+!MESSAGE Indexed 'Tuto_Graphe_GL' (34 sources, 57 headers) in 1.24 sec: 1,358 declarations; 1,308 references; 112 unresolved inclusions; 0 syntax errors; 764 unresolved names (22%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-12-11 13:16:50.710
+!MESSAGE Indexed 'CppExerciceRevision' (41 sources, 69 headers) in 0.641 sec: 1,525 declarations; 1,448 references; 125 unresolved inclusions; 0 syntax errors; 801 unresolved names (21%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-12-11 13:16:51.482
+!MESSAGE Indexed 'Cuda_MOO' (8 sources, 85 headers) in 0.766 sec: 2,316 declarations; 1,880 references; 105 unresolved inclusions; 192 syntax errors; 900 unresolved names (18%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-12-11 13:16:51.915
+!MESSAGE Indexed 'cppExericeRevision' (34 sources, 57 headers) in 0.423 sec: 1,358 declarations; 1,308 references; 112 unresolved inclusions; 0 syntax errors; 764 unresolved names (22%)

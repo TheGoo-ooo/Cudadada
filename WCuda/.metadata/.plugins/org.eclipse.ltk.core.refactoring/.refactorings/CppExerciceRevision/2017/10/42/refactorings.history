@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;CppExerciceRevision/src/cpp/exercice/ABC.cpp&apos; to &apos;ABC.h&apos;" description="Rename resource &apos;ABC.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/cpp/exercice/ABC.cpp" name="ABC.h" stamp="1508157700931" updateReferences="true"/>
+</session>

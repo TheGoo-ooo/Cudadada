@@ -1,0 +1,224 @@
+
+package ch.arc.cours.lamda.e_sequential_to_parralel;
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+import org.junit.Assert;
+
+public class UseSequentialToParallel2
+	{
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Public							*|
+	\*------------------------------------------------------------------*/
+
+	public static void main(String[] args)
+		{
+		main();
+		}
+
+	public static void main()
+		{
+		System.out.println("sequentiel to parallel");
+
+		sequentialToParralel1();
+		sequentialToParralel2();
+		sequentialToParralel3();
+
+
+		histoStandard();
+		histoStreamSequentiel();
+		}
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Private						*|
+	\*------------------------------------------------------------------*/
+
+	/**
+	 * addition vectorielle
+	 */
+	private static void sequentialToParralel1()
+		{
+		// Data
+		int n = 5;
+
+		Integer[] v1 = { 1, 2, 3, 4, 5 };
+		Integer[] v2 = { 10, 20, 30, 40, 50 };
+
+		Assert.assertTrue(v1.length == n && v2.length == n);
+
+		// sequentiel : code standad
+			{
+			System.out.println("\nsequentiel");
+
+			Integer[] sum = new Integer[n];
+			for(int i = 0; i < n; i++)
+				{
+				sum[i] = v1[i] + v2[i];
+				}
+
+			System.out.println(Arrays.toString(sum));
+			}
+
+		// parallel : stream
+			{
+			System.out.println("\nparallel");
+
+			Integer[] sum = new Integer[n];
+			// TODO foreach
+			// range [0,n[
+			IntStream.range(0, n).forEach(i -> sum[i] = v1[i] + v2[i]);
+
+			System.out.println(Arrays.toString(sum));
+			}
+		}
+
+	/**
+	 * produit scalaire
+	 */
+	private static void sequentialToParralel2()
+		{
+		// Data
+		int n = 5;
+
+		Integer[] v1 = { 1, 2, 3, 4, 5 };
+		Integer[] v2 = { 10, 20, 30, 40, 50 };
+
+		Assert.assertTrue(v1.length == n && v2.length == n);
+
+		// sequentiel : code standad
+			{
+			System.out.println("\nsequentiel");
+
+			long sum = 0;
+			for(int i = 0; i < n; i++)
+				{
+				sum += v1[i] * v2[i];
+				}
+
+			System.out.println("produit scalaire = " + sum);
+			}
+
+		// parallel : stream
+			{
+			System.out.println("\nparallel");
+
+			// TODO mapToLong
+			long produitScalaire = IntStream.range(0, n).mapToLong(i -> v1[i]*v2[i]).sum();
+			// range [0,n[
+
+			System.out.println("ASF: produit scalaire = " + produitScalaire);
+			}
+		}
+
+	/**
+	 * Factorielle
+	 */
+	private static void sequentialToParralel3()
+		{
+		int n = 4;
+
+		// sequentiel : code standad
+			{
+			System.out.println("\nsequentiel");
+
+			long facto = 1;
+			for(int i = 1; i <= n; i++)
+				{
+				facto *= i;
+				}
+
+			System.out.println("facto= " + facto);
+			}
+
+		// parallel : stream
+			{
+			System.out.println("\nparallel");
+
+			// TODO
+			long facto = IntStream.range(0, n).mapToLong(x -> x).reduce(2,(x,y)-> x*y);
+			// range [0,n[
+
+			System.out.println("facto= " + facto);
+			}
+		}
+
+	/**
+	 * histogramme
+	 */
+	private static void histoStandard()
+		{
+		int m = 1000;
+		int n = 255 * m;
+
+		int[] tab = createDataInput(n);
+
+		// code standard
+			{
+			int[] histo = new int[LIMITE];
+
+			// init
+				{
+				for(int s = 0; s < histo.length; s++)
+					{
+					histo[s] = 0;
+					}
+				}
+
+			// fill
+				{
+				for(int s = 0; s < n; s++)
+					{
+					histo[tab[s]]++;
+					}
+				}
+
+			check(histo);
+			}
+		}
+
+	/**
+	 * histogramme
+	 */
+	private static void histoStreamSequentiel()
+		{
+		int m = 1000;
+		int n = 255 * m;
+
+		int[] tab = createDataInput(n);
+
+		int[] histo = new int[LIMITE];
+
+		// init
+		Arrays.stream(histo).parallel().forEach(s -> histo[s] = 0);
+
+		// fill sequentiel
+		Arrays.stream(tab).forEach(s -> histo[tab[s]]++);
+
+		check(histo);
+		}
+
+	/*------------------------------*\
+	|*			  Tools			*|
+	\*------------------------------*/
+
+	private static void check(int[] histo)
+		{
+		System.out.println("Histo" + Arrays.toString(histo));
+		}
+
+	private static int[] createDataInput(int n)
+		{
+		int[] tab = new int[n];
+		for(int i = 0; i < n; i++)
+			{
+			tab[i] = i % LIMITE;
+			Assert.assertTrue(tab[i] >= 0 && tab[i] <= LIMITE);
+			}
+
+		return tab;
+		}
+
+	private static final int LIMITE = 255;
+	}

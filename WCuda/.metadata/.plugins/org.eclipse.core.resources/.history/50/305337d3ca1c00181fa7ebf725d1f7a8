@@ -1,0 +1,94 @@
+#pragma once
+
+#include <math.h>
+#include "MathTools.h"
+
+#include "ColorTools_GPU.h"
+
+using namespace gpu;
+
+/*----------------------------------------------------------------------*\
+ |*			Declaration 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+class MandelbrotMath
+    {
+	/*--------------------------------------*\
+	|*		Constructeur		*|
+	 \*-------------------------------------*/
+
+    public:
+	__device__
+	MandelbrotMath(uint w, uint h)
+	    {
+
+	    }
+
+	// constructeur copie: pas besoin car pas attribut ptr
+	__device__
+	virtual ~MandelbrotMath(void)
+	    {
+	    // rien
+	    }
+
+	/*--------------------------------------*\
+	|*		Methode			*|
+	\*-------------------------------------*/
+
+    public:
+	__device__
+	void colorIJ(uchar4* ptrColor, int i, int j, float t)
+	    {
+	    float k = f(i, j);
+	    float hue = k;
+	    if(hue<n)
+		{
+		calibreur.calibrer(&hue);
+		ColorTools::HSB_TO_RVB(hue, ptrColor); // update color
+		}
+	    else
+		{
+		ptrColor->x = 0;
+		ptrColor->y = 0;
+		ptrColor->z = 0;
+		}
+
+	    ptrColor->w = 255; // opaque
+	    }
+
+    private:
+	__device__
+	void f(float x, float y)
+	    {
+	    float a = 0;
+	    float b = 0;
+	    int k = 0;
+	    while( !(a*a + b*b > 4 || k > n) )
+		{
+		float aCopy = a;
+		a = (a*a - b*b) + x;
+		b = 2*aCopy*b + y;
+		k++;
+		}
+	    return k;
+	    }
+
+	/*--------------------------------------*\
+	|*		Attribut		*|
+	\*--------------------------------------*/
+
+    private:
+
+	// Tools
+	float dim2;
+	float n = 50;
+
+    };
+
+/*----------------------------------------------------------------------*\
+ |*			End	 					*|
+ \*---------------------------------------------------------------------*/

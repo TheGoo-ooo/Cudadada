@@ -1,0 +1,5 @@
+1525072586597	Delete resource 'Student_Cuda/src/cpp/core/04_Montecarlo/provider'
+1525072935941	Delete resource 'Student_Cuda/src/cpp/core/04_Montecarlo/moo'
+1525073003248	Delete resource 'Student_Cuda/src/cpp/core/03_Slice/device'
+1525073007846	Delete resource 'Student_Cuda/src/cpp/core/03_Slice/host'
+1525073011655	Delete resource 'Student_Cuda/src/cpp/core/03_Slice/useSlice.cu'

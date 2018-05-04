@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="org.bilat.thread.naif.AddNaifs"/>
+<fullyQualifiedTypeName name="org.bilat.thread.use.UseAdds"/>
+<fullyQualifiedTypeName name="org.bilat.thread.tools.TabTools"/>
+<fullyQualifiedTypeName name="java.util.concurrent.Future"/>
+<fullyQualifiedTypeName name="java.util.concurrent.Executor"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ExecutorService"/>
+<fullyQualifiedTypeName name="java.util.concurrent.Executors"/>
+<fullyQualifiedTypeName name="com.bilat.tuto.graph.jni.moo.SinusMOO"/>
+<fullyQualifiedTypeName name="com.bilat.tuto.graph.jni.animator.Animable_I"/>
+<fullyQualifiedTypeName name="com.bilat.tuto.jni.natif.Native"/>
+<fullyQualifiedTypeName name="com.bilat.canvas.jni.natif.Native"/>
+<fullyQualifiedTypeName name="com.bilat.canvas.jni.tools.AnimatorJava"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.stream.Collector"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.function.Predicate"/>
+<fullyQualifiedTypeName name="ch.arc.cours.lamda.c_stream.tools.Personne"/>
+<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="ch.arc.cours.lamda.e_sequential_to_parralel.UseSequentialToParallel1"/>
+<fullyQualifiedTypeName name="java.util.function.DoubleConsumer"/>
+<fullyQualifiedTypeName name="java.util.stream.Stream"/>
+<fullyQualifiedTypeName name="javax.xml.transform.stream.StreamSource"/>
+<fullyQualifiedTypeName name="java.util.stream.IntStream"/>
+</qualifiedTypeNameHistroy>

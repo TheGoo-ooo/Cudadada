@@ -1,0 +1,105 @@
+#include "Ray.h"
+
+#include <iostream>
+#include <assert.h>
+
+#include "Device.h"
+#include <assert.h>
+
+#include "SphereCreator.h"
+
+using std::cout;
+using std::endl;
+
+/*----------------------------------------------------------------------*\
+ |*			Declaration 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Imported	 	*|
+ \*-------------------------------------*/
+
+extern __global__ void ray(
+	uchar4* ptrDevPixels, int nbSphere, Sphere* ptrDevTabSphere, int uint w, uint h, float t);
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Private			*|
+ \*-------------------------------------*/
+
+/*----------------------------------------------------------------------*\
+ |*			Implementation 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+/*-------------------------*\
+ |*	Constructeur	    *|
+ \*-------------------------*/
+
+Ray::Ray(const Grid& grid, int nbSphere, uint w, uint h, float dt) :
+	Animable_I<uchar4>(grid, w, h, "RayTracing_Cuda")
+    {
+    // Inputs
+    this->dt = dt;
+
+    // Tools
+    this->t = 0; // protected dans Animable
+
+    // TO DO.
+    SphereCreator sphereCreator(nbSphere, w, h); // sur la pile
+    Sphere* ptrTabSphere = sphereCreator.getTabSphere();
+	{
+	//Device::memcpyHToD(ptrDev, ptr, sizeOctet)
+	//Device::malloc(ptrTabSphere, (int)sizeof(Sphere));
+	}
+	{
+
+	}
+    }
+
+Ray::~Ray()
+    {
+    // rien
+    }
+
+/*-------------------------*\
+ |*	Methode		    *|
+ \*-------------------------*/
+
+/**
+ * Override
+ * Call periodicly by the API
+ *
+ * Note : domaineMath pas use car pas zoomable
+ */
+void Ray::process(uchar4* ptrDevPixels, uint w, uint h, const DomaineMath& domaineMath)
+    {
+    Device::lastCudaError("RayTracing_Cuda (before kernel)"); // facultatif, for debug only, remove for release
+
+    ray<<<dg,db>>>(ptrDevPixels, int nbSphere, Sphere* ptrDevTabSphere, w, h, t);
+
+    Device::lastCudaError("RayTracing_Cuda (after kernel)"); // facultatif, for debug only, remove for release
+    }
+
+/**
+ * Override
+ * Call periodicly by the API
+ */
+void Ray::animationStep()
+    {
+    t += dt;
+    }
+/*--------------------------------------*\
+ |*		Private			*|
+ \*-------------------------------------*/
+
+/*----------------------------------------------------------------------*\
+ |*			End	 					*|
+ \*---------------------------------------------------------------------*/
+

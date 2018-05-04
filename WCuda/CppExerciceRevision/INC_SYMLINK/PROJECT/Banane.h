@@ -1,0 +1,1 @@
+/home/arc2/CUDA/toStudent/code/WCuda/CppExerciceRevision//src/cpp/core/10_advanced/a_echaufement/Banane.h

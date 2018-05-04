@@ -1,0 +1,117 @@
+#pragma once
+
+#include <math.h>
+#include "cudaTools.h"
+#include "MathTools.h"
+
+#include"Sphere.h"
+
+#include "ColorTools_GPU.h"
+using namespace gpu;
+
+/*----------------------------------------------------------------------*\
+ |*			Declaration 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+class RayMath
+    {
+	/*--------------------------------------*\
+	|*		Constructeur		*|
+	 \*-------------------------------------*/
+
+    public:
+	__device__
+	RayMath(int nbSphere, Sphere* ptrDevTabSphere)
+	    {
+	    this->nbSphere = nbSphere;
+	    this->ptrDevTabSphere = ptrDevTabSphere;
+	    }
+
+	__device__
+	virtual ~RayMath(void)
+	    {
+	    }
+
+	/*--------------------------------------*\
+	|*		Methode			*|
+	 \*-------------------------------------*/
+
+    public:
+	__device__
+	void colorIJ(uchar4* ptrColorIJ, int i, int j, float t)
+	    {
+
+	    //Mettre à 125, fair le parallèlisme, puis tester math.
+	    uchar levelGris;
+
+	    f(j, i, t, &levelGris);
+
+	    ptrColorIJ->x = levelGris;
+	    ptrColorIJ->y = levelGris;
+	    ptrColorIJ->z = levelGris;
+
+	    ptrColorIJ->w = 255; //opaque
+	    }
+
+    private:
+	__device__
+	void f(int i, int j, float t, uchar* ptrlevelGris)
+	    {
+	    Sphere* spheres = ptrDevTabSphere;
+	    float closestSphere = -1.f;
+	    float tempDz;
+	    int tempIndex;
+
+	    for(int k=0; k<nbSphere; k++)
+		{
+		float2 xysol = make_float2(j,i);
+		float hCarre = spheres[k].hCarre(xysol);
+		if(!spheres[k].isEnDessous(hCarre))
+		    continue;
+
+		float dz = spheres[k].dz(hCarre);
+		float distance = spheres[k].distance(dz);
+		if(closestSphere < 0.f)
+		    {
+		    closestSphere = distance;
+		    tempDz = dz;
+		    tempIndex = k;
+		    }
+		else if(distance < closestSphere)
+		    {
+		    closestSphere = distance;
+		    tempDz = dz;
+		    tempIndex = k;
+		    }
+		}
+
+	    if(closestSphere != -1.f)
+		{
+		*ptrlevelGris = (int)(spheres[tempIndex].brightness(tempDz)*255.f);
+		}
+	    else
+		{
+		*ptrlevelGris = 0;
+		}
+	    }
+
+	/*--------------------------------------*\
+	|*		Attribut		*|
+	\*--------------------------------------*/
+
+    private:
+
+	// Tools
+
+	int nbSphere;
+	Sphere* ptrDevTabSphere;
+
+    };
+
+/*----------------------------------------------------------------------*\
+ |*			End	 					*|
+ \*---------------------------------------------------------------------*/

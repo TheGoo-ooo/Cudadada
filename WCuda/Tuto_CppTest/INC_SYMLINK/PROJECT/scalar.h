@@ -1,0 +1,1 @@
+/home/arc2/CUDA/toStudent/code/WCuda/Tuto_CppTest//src/cpp/core/standard/scalar/scalar.h

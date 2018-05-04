@@ -1,0 +1,74 @@
+#include "Slice.h"
+
+#include <iostream>
+
+#include "Device.h"
+
+using std::cout;
+using std::endl;
+
+/*----------------------------------------------------------------------*\
+ |*			Declaration 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Imported	 	*|
+ \*-------------------------------------*/
+
+extern __global__ void slice(float* ptrDevV1, float* ptrDevV2, float* ptrDevW,int n);
+
+/*--------------------------------------*\
+ |*		Public			*|
+ \*-------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Private			*|
+ \*-------------------------------------*/
+
+/*----------------------------------------------------------------------*\
+ |*			Implementation 					*|
+ \*---------------------------------------------------------------------*/
+
+/*--------------------------------------*\
+ |*		Constructeur			*|
+ \*-------------------------------------*/
+
+slice::slice(const Grid& grid, int n) :
+	grid(grid), n(n)
+    {
+    // Grid
+	{
+	this->dg = grid.dg;
+	this->db = grid.db;
+	}
+    }
+
+slice::~slice(void)
+    {
+    }
+
+/*--------------------------------------*\
+ |*		Methode			*|
+ \*-------------------------------------*/
+
+void slice::run()
+    {
+    Device::lastCudaError("addVecteur (before)"); // temp debug
+    slice<<<dg,db>>>(ptrDevV1, ptrDevV2, ptrDevW, n); // assynchrone
+    Device::lastCudaError("addVecteur (after)"); // temp debug
+
+    Device::synchronize(); // Temp,debug, only for printf in  GPU
+
+    // MM (Device -> Host)
+	{
+	Device::memcpyDToH(ptrW, ptrDevW, sizeOctet); // barriere synchronisation implicite
+	}
+    }
+
+/*--------------------------------------*\
+ |*		Private			*|
+ \*-------------------------------------*/
+
+/*----------------------------------------------------------------------*\
+ |*			End	 					*|
+ \*---------------------------------------------------------------------*/
