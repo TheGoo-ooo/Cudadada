@@ -1,4 +1,4 @@
-20:03:21 **** Incremental Build of configuration CudaGCC_parallel for project Student_Cuda ****
+23:27:20 **** Build of configuration CudaGCC_parallel for project Student_Cuda ****
 cbicc cuda jall 
 
 --------------------------------------------------------
@@ -88,13 +88,13 @@ Cuda compilation tools, release 8.0, V8.0.44
 ==================================================================================
 [CBI] -> Target Name  : Student_Cuda_cuda_80_x86_64
 [CBI] ->
-[CBI] -> Build        : /tmp/ramdrive/arc8/Targets/Student_Cuda/bin/Student_Cuda_cuda_80_x86_64.run
+[CBI] -> Build        : /tmp/ramdrive/arc2/Targets/Student_Cuda/bin/Student_Cuda_cuda_80_x86_64.run
 [CBI] -> Deploy       : ../RELEASE/bin
 [CBI] ->
 [CBI] -> Type	      : EXE
 [CBI] -> Arch	      : x86_64
 [CBI] -> OS	 		  : Linux
-[CBI] -> User	 	  : arc8
+[CBI] -> User	 	  : arc2
 [CBI] ->
 [CBI] -> Task		  : Compiling-Linking !
 ==================================================================================
@@ -246,102 +246,16 @@ Cuda compilation tools, release 8.0, V8.0.44
 
 [CBI] -> Compilation parallel (16 threads)
 
-[Student_Cuda_cuda_80_x86_64] -> g++ compiling .cpp : src/cpp/core/mainCore.cpp
-
-[CBI] -> Linking to   : /tmp/ramdrive/arc8/Targets/Student_Cuda/bin/Student_Cuda_cuda_80_x86_64.run
-
-[CBI] -> Library Link :
-[CBI] ->
-[CBI] ->              : -lBilatTools_CPP_303_006_gcc_x86_64
-[CBI] ->              : -lBilatTools_Cuda_303_006_cuda_80_x86_64
-[CBI] ->              : -lBilatTools_OMP_303_006_gcc_x86_64
-[CBI] ->              : -lCpp_Test_112_gcc_x86_64
-[CBI] ->              : -lOpenCL
-[CBI] ->              : -lboost_atomic-gcc484
-[CBI] ->              : -lboost_chrono-gcc484
-[CBI] ->              : -lboost_container-gcc484
-[CBI] ->              : -lboost_context-gcc484
-[CBI] ->              : -lboost_coroutine-gcc484
-[CBI] ->              : -lboost_date_time-gcc484
-[CBI] ->              : -lboost_filesystem-gcc484
-[CBI] ->              : -lboost_graph-gcc484
-[CBI] ->              : -lboost_iostreams-gcc484
-[CBI] ->              : -lboost_locale-gcc484
-[CBI] ->              : -lboost_log-gcc484
-[CBI] ->              : -lboost_log_setup-gcc484
-[CBI] ->              : -lboost_math_c99-gcc484
-[CBI] ->              : -lboost_math_c99f-gcc484
-[CBI] ->              : -lboost_math_c99l-gcc484
-[CBI] ->              : -lboost_math_tr1-gcc484
-[CBI] ->              : -lboost_math_tr1f-gcc484
-[CBI] ->              : -lboost_math_tr1l-gcc484
-[CBI] ->              : -lboost_prg_exec_monitor-gcc484
-[CBI] ->              : -lboost_program_options-gcc484
-[CBI] ->              : -lboost_random-gcc484
-[CBI] ->              : -lboost_regex-gcc484
-[CBI] ->              : -lboost_serialization-gcc484
-[CBI] ->              : -lboost_signals-gcc484
-[CBI] ->              : -lboost_system-gcc484
-[CBI] ->              : -lboost_thread-gcc484
-[CBI] ->              : -lboost_timer-gcc484
-[CBI] ->              : -lboost_type_erasure-gcc484
-[CBI] ->              : -lboost_unit_test_framework-gcc484
-[CBI] ->              : -lboost_wave-gcc484
-[CBI] ->              : -lboost_wserialization-gcc484
-[CBI] ->              : -lcublas
-[CBI] ->              : -lcuda
-[CBI] ->              : -lcudart
-[CBI] ->              : -lcufft
-[CBI] ->              : -lcufftw
-[CBI] ->              : -lcuinj64
-[CBI] ->              : -lcurand
-[CBI] ->              : -lcusolver
-[CBI] ->              : -lcusparse
-[CBI] ->              : -lgomp
-[CBI] ->              : -lnppc
-[CBI] ->              : -lnppi
-[CBI] ->              : -lnppial
-[CBI] ->              : -lnppicc
-[CBI] ->              : -lnppicom
-[CBI] ->              : -lnppidei
-[CBI] ->              : -lnppif
-[CBI] ->              : -lnppig
-[CBI] ->              : -lnppim
-[CBI] ->              : -lnppist
-[CBI] ->              : -lnppisu
-[CBI] ->              : -lnppitc
-[CBI] ->              : -lnpps
-[CBI] ->              : -lnvToolsExt
-[CBI] ->              : -lnvblas
-[CBI] ->              : -lnvgraph
-[CBI] ->              : -lnvidia-ml
-[CBI] ->              : -lnvrtc
-[CBI] ->              : -lnvrtc-builtins
-
-
-==================================================================================
-[CBI] -> Target Name  : Student_Cuda_cuda_80_x86_64
-[CBI] -> Location     : /tmp/ramdrive/arc8/Targets/Student_Cuda/bin/Student_Cuda_cuda_80_x86_64.run
-[CBI] -> Deploy 	  : ../RELEASE/bin
-[CBI] ->
-[CBI] -> Type	 	  : EXE
-[CBI] -> Arch	 	  : x86_64
-[CBI] -> OS	 	      : Linux
-[CBI] -> User	 	  : arc8
-[CBI] ->
-[CBI] -> Compilateur  : g++ && nvcc
-[CBI] -> Task		  : End Compiling-Linking !
-[CBI] -> Time		  : 1 (s)
-==================================================================================
-
+make[1]: Nothing to be done for `compilelink'.
 
 [CBI] -> Deploying      : ../RELEASE/bin/Student_Cuda_cuda_80_x86_64.run
 
 [CBI] -> Symlink Project Inc
 [CBI] -> To update code completion : ctrl-shift-s   or   gui/index/rebuild
+Warning : symlink INC_SYMLINK/PROJECT/AddVector.h already exist for /home/arc2/CUDA/toStudent/code/Cudadada/WCuda/Student_Cuda//src/cpp/core/04_Montecarlo/host/AddVector.h
 
 [CBI] -> Student_Cuda_cuda_80_x86_64 : End ALL!
 
 
-20:03:22 Build Finished (took 1s.34ms)
+23:27:20 Build Finished (took 674ms)
 

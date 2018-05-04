@@ -13,12 +13,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="assert" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="SM"/>
+			<item value="sizeO"/>
 			<item value="assert"/>
 			<item value=" t "/>
 			<item value="t "/>
@@ -32,8 +34,6 @@
 			<item value="processForAuto"/>
 			<item value="entrelacement"/>
 			<item value="zoom"/>
-			<item value="Damier"/>
-			<item value="provi"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Mandelbrot"/>
@@ -50,7 +50,7 @@
 		<item value="344" key="DIALOG_WIDTH"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<item value="445" key="DIALOG_HEIGHT"/>
-		<item value="204" key="DIALOG_Y_ORIGIN"/>
-		<item value="734" key="DIALOG_X_ORIGIN"/>
+		<item value="212" key="DIALOG_Y_ORIGIN"/>
+		<item value="899" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

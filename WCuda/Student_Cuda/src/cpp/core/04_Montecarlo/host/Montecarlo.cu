@@ -24,7 +24,9 @@ Montecarlo::Montecarlo(const Grid& grid, float m, uint n) : n(n) {
     this->sizeOGM = sizeof(uint);
 
     Device::malloc(&p_dev_gm, sizeOGM); //ptrDevTabGM
-    Device::memclear(&p_dev_gm, sizeOGM);
+
+    //Device::memclear(&p_dev_gm, sizeOGM);
+
     Device::malloc(&p_ary_gen_gm, sizeOGenGM);
 
     this->dg = grid.dg;

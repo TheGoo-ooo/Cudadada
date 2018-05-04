@@ -1,4 +1,4 @@
-10:01:37 **** Incremental Build of configuration CudaGCC_parallel for project Student_Cuda_Image ****
+22:08:59 **** Incremental Build of configuration CudaGCC_parallel for project Student_Cuda_Image ****
 cbicc cuda jall 
 
 --------------------------------------------------------
@@ -489,7 +489,7 @@ Cuda compilation tools, release 8.0, V8.0.44
 [CBI] ->
 [CBI] -> Compilateur  : g++ && nvcc
 [CBI] -> Task		  : End Compiling-Linking !
-[CBI] -> Time		  : 3 (s)
+[CBI] -> Time		  : 2 (s)
 ==================================================================================
 
 
@@ -501,5 +501,5 @@ Cuda compilation tools, release 8.0, V8.0.44
 [CBI] -> Student_Cuda_Image_cuda_80_x86_64 : End ALL!
 
 
-10:01:40 Build Finished (took 3s.461ms)
+22:09:03 Build Finished (took 3s.583ms)
 
